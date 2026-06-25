@@ -1,99 +1,879 @@
-AgroSustentável — Tecnologia e Preservação  
-  
-  
- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Agro Sustentável - Cultivando o futuro com responsabilidade ambiental, econômica e social.">
+<title>Agro Sustentável | Cultivando o Futuro</title>
+<style>
+  /* ============ RESET & BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --verde-escuro: #1b4332;
+    --verde-medio: #2d6a4f;
+    --verde-claro: #52b788;
+    --verde-suave: #b7e4c7;
+    --terra: #7c5e3c;
+    --terra-clara: #c9a27a;
+    --dourado: #e9b949;
+    --creme: #f8f5ee;
+    --texto: #1a2e1f;
+    --branco: #ffffff;
+    --sombra: 0 10px 30px rgba(27, 67, 50, 0.12);
+    --sombra-forte: 0 20px 50px rgba(27, 67, 50, 0.25);
+    --transicao: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--texto);
+    background: var(--creme);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-Pular para o conteúdo principal 
+  /* ============ HEADER / NAV ============ */
+  header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: rgba(248, 245, 238, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    transition: var(--transicao);
+    border-bottom: 1px solid rgba(27, 67, 50, 0.08);
+  }
+  header.scrolled { box-shadow: var(--sombra); }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 24px; max-width: 1200px; margin: 0 auto;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 1.4rem; color: var(--verde-escuro);
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--verde-claro), var(--verde-escuro));
+    border-radius: 50%;
+    display: grid; place-items: center;
+    box-shadow: 0 4px 12px rgba(82, 183, 136, 0.4);
+  }
+  .logo-icon svg { width: 24px; height: 24px; fill: white; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-weight: 500; color: var(--texto); position: relative;
+    transition: color var(--transicao);
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -6px; left: 0;
+    width: 0; height: 2px; background: var(--verde-claro);
+    transition: width var(--transicao);
+  }
+  .nav-links a:hover { color: var(--verde-medio); }
+  .nav-links a:hover::after { width: 100%; }
+  .btn-nav {
+    background: var(--verde-escuro); color: white !important;
+    padding: 10px 22px; border-radius: 30px;
+    transition: var(--transicao);
+  }
+  .btn-nav:hover { background: var(--verde-medio); transform: translateY(-2px); }
+  .btn-nav::after { display: none; }
+  .menu-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 32px; height: 32px; flex-direction: column; justify-content: space-around;
+  }
+  .menu-toggle span {
+    display: block; height: 3px; background: var(--verde-escuro);
+    border-radius: 2px; transition: var(--transicao);
+  }
 
-  
-🌓 Alto Contraste  
-A+  
-A-  
- 
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at top right, rgba(82, 183, 136, 0.15), transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(233, 185, 73, 0.12), transparent 60%),
+      linear-gradient(135deg, #f8f5ee 0%, #e8f1e4 100%);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 120px 0 60px;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(82, 183, 136, 0.08) 2px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(124, 94, 60, 0.06) 2px, transparent 2px);
+    background-size: 60px 60px, 80px 80px;
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 60px; align-items: center; position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(82, 183, 136, 0.15); color: var(--verde-escuro);
+    padding: 8px 18px; border-radius: 30px; font-size: 0.9rem;
+    font-weight: 600; margin-bottom: 24px;
+    border: 1px solid rgba(82, 183, 136, 0.3);
+  }
+  .hero-badge::before {
+    content: '🌱'; font-size: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800; line-height: 1.1;
+    color: var(--verde-escuro); margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--verde-claro), var(--dourado));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.15rem; color: #4a5a4e;
+    margin-bottom: 36px; max-width: 520px;
+  }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary, .btn-secondary {
+    padding: 14px 30px; border-radius: 30px;
+    font-weight: 600; font-size: 1rem;
+    transition: var(--transicao); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid transparent;
+  }
+  .btn-primary {
+    background: var(--verde-escuro); color: white;
+    box-shadow: 0 8px 20px rgba(27, 67, 50, 0.3);
+  }
+  .btn-primary:hover {
+    background: var(--verde-medio);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(27, 67, 50, 0.4);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+  }
+  .btn-secondary:hover {
+    background: var(--verde-escuro); color: white;
+    transform: translateY(-3px);
+  }
 
-  
-AgroSustentável  
-  
-Início  
-Pilares  
-Simulador  
-  
- 
+  .hero-visual {
+    position: relative; height: 500px;
+    display: grid; place-items: center;
+  }
+  .hero-circle {
+    width: 420px; height: 420px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--verde-claro), var(--verde-escuro));
+    position: relative;
+    box-shadow: 0 30px 80px rgba(45, 106, 79, 0.35);
+    animation: float 6s ease-in-out infinite;
+  }
+  .hero-circle::before {
+    content: ''; position: absolute; inset: 20px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 50%),
+      linear-gradient(135deg, var(--verde-medio), var(--verde-claro));
+  }
+  .hero-circle::after {
+    content: '🌾'; position: absolute;
+    font-size: 8rem; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+  }
+  .floating-card {
+    position: absolute; background: white;
+    padding: 16px 20px; border-radius: 16px;
+    box-shadow: var(--sombra-forte);
+    display: flex; align-items: center; gap: 12px;
+    animation: float 5s ease-in-out infinite;
+  }
+  .floating-card .icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: grid; place-items: center; font-size: 1.4rem;
+  }
+  .card-1 { top: 10%; left: -20px; animation-delay: 0s; }
+  .card-1 .icon { background: rgba(82, 183, 136, 0.15); }
+  .card-2 { bottom: 15%; right: -10px; animation-delay: 2s; }
+  .card-2 .icon { background: rgba(233, 185, 73, 0.2); }
+  .card-3 { top: 50%; right: 10px; animation-delay: 4s; }
+  .card-3 .icon { background: rgba(124, 94, 60, 0.15); }
+  .floating-card strong { display: block; font-size: 0.95rem; color: var(--verde-escuro); }
+  .floating-card small { color: #6b7a6e; font-size: 0.8rem; }
 
-  
-  
-Agro Forte, Futuro Sustentável  
-O equilíbrio perfeito entre a alta produtividade no campo e a preservação ativa do nosso ecossistema.  
-Conhecer Pilares  
-  
- 
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
 
-  
-Nossos Pilares  
-Conheça as práticas que guiam a nova era da agricultura mundial. 
+  /* ============ SECTIONS ============ */
+  section { padding: 100px 0; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    display: inline-block; color: var(--verde-medio);
+    font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  .section-header h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--verde-escuro); font-weight: 800;
+    margin-bottom: 16px; letter-spacing: -0.5px;
+  }
+  .section-header p {
+    max-width: 640px; margin: 0 auto;
+    color: #5a6a5e; font-size: 1.1rem;
+  }
 
-  
-🛸  
-Tecnologia  
-Uso direcionado de inteligência artificial e drones para mapear o solo e otimizar recursos escassos.  
- 
+  /* ============ PILARES ============ */
+  .pilares { background: white; }
+  .pilares-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .pilar-card {
+    background: var(--creme);
+    padding: 40px 32px; border-radius: 20px;
+    transition: var(--transicao);
+    border: 1px solid rgba(27, 67, 50, 0.06);
+    position: relative; overflow: hidden;
+  }
+  .pilar-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--verde-claro), var(--dourado));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--transicao);
+  }
+  .pilar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-forte);
+    background: white;
+  }
+  .pilar-card:hover::before { transform: scaleX(1); }
+  .pilar-icon {
+    width: 70px; height: 70px; border-radius: 18px;
+    display: grid; place-items: center;
+    margin-bottom: 24px; font-size: 2rem;
+    transition: var(--transicao);
+  }
+  .pilar-card:hover .pilar-icon { transform: scale(1.1) rotate(-5deg); }
+  .pilar-amb .pilar-icon { background: rgba(82, 183, 136, 0.15); }
+  .pilar-eco .pilar-icon { background: rgba(233, 185, 73, 0.2); }
+  .pilar-soc .pilar-icon { background: rgba(124, 94, 60, 0.15); }
+  .pilar-card h3 {
+    font-size: 1.4rem; color: var(--verde-escuro);
+    margin-bottom: 12px; font-weight: 700;
+  }
+  .pilar-card p { color: #5a6a5e; }
 
-  
-🌱  
-Preservação  
-Implementação de manejo moderno e bioinsumos para enriquecer o solo sem agredir os lençóis freáticos.  
- 
+  /* ============ PRÁTICAS ============ */
+  .praticas {
+    background: linear-gradient(180deg, var(--creme) 0%, #e8f1e4 100%);
+  }
+  .praticas-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .pratica-card {
+    background: white; padding: 32px 28px;
+    border-radius: 18px; transition: var(--transicao);
+    border: 1px solid rgba(27, 67, 50, 0.08);
+    position: relative;
+  }
+  .pratica-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra);
+  }
+  .pratica-num {
+    position: absolute; top: 20px; right: 24px;
+    font-size: 3rem; font-weight: 800;
+    color: rgba(82, 183, 136, 0.15);
+    line-height: 1;
+  }
+  .pratica-emoji {
+    font-size: 2.5rem; margin-bottom: 16px;
+    display: inline-block;
+    transition: var(--transicao);
+  }
+  .pratica-card:hover .pratica-emoji { transform: scale(1.2) rotate(10deg); }
+  .pratica-card h4 {
+    font-size: 1.2rem; color: var(--verde-escuro);
+    margin-bottom: 10px; font-weight: 700;
+  }
+  .pratica-card p { color: #5a6a5e; font-size: 0.95rem; }
 
-  
-🌾  
-Produção  
-Geração em larga escala de alimentos de alta qualidade com foco na drástica redução da pegada de carbono.  
- 
+  /* ============ STATS ============ */
+  .stats {
+    background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
+    color: white; position: relative; overflow: hidden;
+  }
+  .stats::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px, 60px 60px;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 40px; position: relative; z-index: 1;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800; color: var(--dourado);
+    line-height: 1; margin-bottom: 12px;
+    display: block;
+  }
+  .stat-label {
+    font-size: 1rem; opacity: 0.9;
+    font-weight: 500;
+  }
 
-  
- 
+  /* ============ TECNOLOGIA ============ */
+  .tecnologia { background: white; }
+  .tech-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .tech-content h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--verde-escuro); margin-bottom: 20px;
+    font-weight: 800; letter-spacing: -0.5px;
+  }
+  .tech-content > p {
+    color: #5a6a5e; font-size: 1.05rem; margin-bottom: 32px;
+  }
+  .tech-list { display: flex; flex-direction: column; gap: 18px; }
+  .tech-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px; background: var(--creme);
+    border-radius: 14px; transition: var(--transicao);
+    border-left: 3px solid transparent;
+  }
+  .tech-item:hover {
+    background: #e8f1e4;
+    border-left-color: var(--verde-claro);
+    transform: translateX(6px);
+  }
+  .tech-item-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: white; border-radius: 12px;
+    display: grid; place-items: center; font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.08);
+  }
+  .tech-item h5 {
+    color: var(--verde-escuro); font-size: 1.05rem;
+    margin-bottom: 4px; font-weight: 700;
+  }
+  .tech-item p { font-size: 0.9rem; color: #5a6a5e; }
 
-  
-  
-Diagnóstico de Sustentabilidade  
-Responda as questões abaixo e descubra o nível de equilíbrio ambiental da sua propriedade. 
+  .tech-visual {
+    position: relative; height: 480px;
+    background: linear-gradient(135deg, #e8f1e4, #f8f5ee);
+    border-radius: 24px; overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .tech-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(45deg, transparent 48%, rgba(82, 183, 136, 0.1) 49%, rgba(82, 183, 136, 0.1) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, rgba(82, 183, 136, 0.1) 49%, rgba(82, 183, 136, 0.1) 51%, transparent 52%);
+    background-size: 40px 40px;
+  }
+  .tech-icon-big {
+    font-size: 10rem; position: relative; z-index: 1;
+    filter: drop-shadow(0 20px 40px rgba(27, 67, 50, 0.2));
+    animation: float 6s ease-in-out infinite;
+  }
+  .tech-orbit {
+    position: absolute; width: 360px; height: 360px;
+    border: 2px dashed rgba(45, 106, 79, 0.2);
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+  }
+  .tech-orbit::before, .tech-orbit::after {
+    content: ''; position: absolute;
+    width: 50px; height: 50px; border-radius: 50%;
+    background: white; display: grid; place-items: center;
+    box-shadow: var(--sombra);
+    font-size: 1.5rem;
+  }
+  .tech-orbit::before {
+    content: '🛰️'; top: -25px; left: 50%;
+    transform: translateX(-50%);
+  }
+  .tech-orbit::after {
+    content: '🌡️'; bottom: -25px; left: 50%;
+    transform: translateX(-50%);
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 
-  
-1\. Como é feito o manejo do solo na área produtiva?  
-  
-\-- Escolha uma opção --  
-Plantio direto completo e rotação de culturas planejada  
-Manejo tradicional com cobertura de palhada apenas parcial  
-Reviramento intensivo constante do solo sem períodos de pousio  
-  
- 
+  /* ============ CTA ============ */
+  .cta-section {
+    background: linear-gradient(135deg, var(--dourado), var(--terra-clara));
+    text-align: center; color: white;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15), transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(27, 67, 50, 0.1), transparent 50%);
+  }
+  .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .cta-content h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; margin-bottom: 20px;
+    color: var(--verde-escuro);
+  }
+  .cta-content p {
+    font-size: 1.15rem; margin-bottom: 36px;
+    color: rgba(27, 46, 31, 0.85);
+  }
+  .cta-content .btn-primary {
+    background: var(--verde-escuro);
+  }
+  .cta-content .btn-primary:hover { background: var(--texto); }
 
-  
-2\. Qual a principal matriz de defensivos e insumos?  
-  
-\-- Escolha uma opção --  
-Prioridade absoluta para bioinsumos e manejo integrado (MIP)  
-Uso controlado de químicos tradicionais apenas em infestações  
-Aplicação pesada preventiva seguindo calendário comercial rígido  
-  
- 
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--verde-escuro); color: #cfe3d5;
+    padding: 70px 0 30px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px; margin-bottom: 50px;
+  }
+  .footer-brand .logo { color: white; margin-bottom: 16px; }
+  .footer-brand p {
+    color: #a8c5b0; font-size: 0.95rem;
+    max-width: 320px; margin-bottom: 20px;
+  }
+  .social-links { display: flex; gap: 12px; }
+  .social-links a {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: grid; place-items: center;
+    transition: var(--transicao);
+  }
+  .social-links a:hover {
+    background: var(--verde-claro);
+    transform: translateY(-3px);
+  }
+  .social-links svg { width: 18px; height: 18px; fill: white; }
+  .footer-col h4 {
+    color: white; font-size: 1.05rem;
+    margin-bottom: 20px; font-weight: 700;
+  }
+  .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a {
+    color: #a8c5b0; font-size: 0.95rem;
+    transition: var(--transicao);
+  }
+  .footer-col a:hover { color: var(--verde-claro); padding-left: 6px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px; text-align: center;
+    color: #7fa38a; font-size: 0.9rem;
+  }
 
-  
-3\. Como funciona a gestão da água na propriedade?  
-  
-\-- Escolha uma opção --  
-Irrigação inteligente por gotejamento guiada por sensores  
-Aspersão convencional sem medição em tempo real da umidade  
-Captação livre com distribuição por inundação sem hidrômetros  
-  
- 
+  /* ============ ANIMAÇÕES SCROLL ============ */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-Calcular Classificação Ecológica 
+  /* ============ RESPONSIVO ============ */
+  @media (max-width: 968px) {
+    .hero-grid, .tech-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { height: 400px; }
+    .hero-circle { width: 320px; height: 320px; }
+    .pilares-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links {
+      position: fixed; top: 72px; right: -100%;
+      flex-direction: column; background: white;
+      width: 80%; max-width: 320px; height: calc(100vh - 72px);
+      padding: 40px 30px; gap: 24px;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      transition: right var(--transicao);
+    }
+    .nav-links.active { right: 0; }
+    .menu-toggle { display: flex; }
+    section { padding: 70px 0; }
+  }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    .floating-card { padding: 12px 14px; font-size: 0.85rem; }
+    .floating-card .icon { width: 36px; height: 36px; }
+  }
+</style>
+</head>
+<body>
 
-  
-  
-  
- 
+<!-- ============ HEADER ============ -->
+<header id="header">
+  <nav>
+    <a href="#" class="logo">
+      <span class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+      </span>
+      AgroVerde
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#pilares">Pilares</a></li>
+      <li><a href="#praticas">Práticas</a></li>
+      <li><a href="#tecnologia">Tecnologia</a></li>
+      <li><a href="#contato" class="btn-nav">Contato</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
 
-  
-© 2026 AgroSustentável. Desenvolvimento focado no amanhã da terra.
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="hero-badge">Cultivando o futuro</span>
+        <h1>Agricultura que <span>respeita</span> a terra e alimenta o mundo</h1>
+        <p>Unimos tradição, ciência e tecnologia para produzir alimentos com responsabilidade ambiental, viabilidade econômica e justiça social. O agro do amanhã começa hoje.</p>
+        <div class="hero-cta">
+          <a href="#praticas" class="btn-primary">
+            Conheça as práticas
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#pilares" class="btn-secondary">Nossos pilares</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-circle"></div>
+        <div class="floating-card card-1">
+          <div class="icon">🌱</div>
+          <div>
+            <strong>Plantio Direto</strong>
+            <small>Solo protegido</small>
+          </div>
+        </div>
+        <div class="floating-card card-2">
+          <div class="icon">☀️</div>
+          <div>
+            <strong>Energia Solar</strong>
+            <small>Matriz limpa</small>
+          </div>
+        </div>
+        <div class="floating-card card-3">
+          <div class="icon">💧</div>
+          <div>
+            <strong>Irrigação Inteligente</strong>
+            <small>Uso eficiente</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILARES ============ -->
+<section class="pilares" id="pilares">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Fundamentos</span>
+      <h2>Os três pilares da agro sustentável</h2>
+      <p>Um modelo de produção que equilibra o cuidado com o meio ambiente, a rentabilidade do produtor e o bem-estar das comunidades.</p>
+    </div>
+    <div class="pilares-grid">
+      <div class="pilar-card pilar-amb fade-in">
+        <div class="pilar-icon">🌳</div>
+        <h3>Ambiental</h3>
+        <p>Preservação da biodiversidade, uso racional da água, proteção do solo e redução da emissão de gases de efeito estufa. Cada hectare é uma oportunidade de regeneração.</p>
+      </div>
+      <div class="pilar-card pilar-eco fade-in">
+        <div class="pilar-icon">📈</div>
+        <h3>Econômico</h3>
+        <p>Produtividade com rentabilidade de longo prazo. Redução de custos por meio da eficiência, agregação de valor e acesso a mercados que valorizam práticas sustentáveis.</p>
+      </div>
+      <div class="pilar-card pilar-soc fade-in">
+        <div class="pilar-icon">🤝</div>
+        <h3>Social</h3>
+        <p>Valorização do trabalhador rural, fortalecimento da agricultura familiar, segurança alimentar e desenvolvimento das comunidades do campo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRÁTICAS ============ -->
+<section class="praticas" id="praticas">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">No campo</span>
+      <h2>Práticas que transformam o agro</h2>
+      <p>Técnicas consagradas e inovações que tornam a produção mais eficiente, regenerativa e em harmonia com a natureza.</p>
+    </div>
+    <div class="praticas-grid">
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">01</span>
+        <div class="pratica-emoji">🔄</div>
+        <h4>Rotação de Culturas</h4>
+        <p>Alternar espécies melhora a fertilidade do solo, quebra ciclos de pragas e reduz a necessidade de insumos externos.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">02</span>
+        <div class="pratica-emoji">🌾</div>
+        <h4>Plantio Direto</h4>
+        <p>Sem revolvimento do solo, com palhada permanente. Conserva a umidade, evita erosão e sequestra carbono.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">03</span>
+        <div class="pratica-emoji">🌳🐄</div>
+        <h4>ILPF</h4>
+        <p>Integração Lavoura-Pecuária-Floresta: múltiplas produções na mesma área, mais renda e recuperação de pastagens.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">04</span>
+        <div class="pratica-emoji">🌿</div>
+        <h4>Agrofloresta</h4>
+        <p>Consórcio de árvores, culturas e, às vezes, animais. Imita a natureza e gera alimentos, madeira e serviços ambientais.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">05</span>
+        <div class="pratica-emoji">💧</div>
+        <h4>Manejo Hídrico</h4>
+        <p>Irrigação de precisão, captação de água da chuva e reuso. Cada gota conta em um clima cada vez mais imprevisível.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">06</span>
+        <div class="pratica-emoji">🐞</div>
+        <h4>Controle Biológico</h4>
+        <p>Uso de inimigos naturais no manejo de pragas. Reduz agrotóxicos, preserva polinizadores e mantém o equilíbrio do ecossistema.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">07</span>
+        <div class="pratica-emoji">♻️</div>
+        <h4>Economia Circular</h4>
+        <p>Resíduos viram insumo: biofertilizantes, biomassa para energia e compostagem fecham ciclos dentro da propriedade.</p>
+      </div>
+      <div class="pratica-card fade-in">
+        <span class="pratica-num">08</span>
+        <div class="pratica-emoji">🌞</div>
+        <h4>Energias Renováveis</h4>
+        <p>Solar, biomassa e biogás reduzem a dependência de combustíveis fósseis e tornam a fazenda mais autossuficiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <span class="stat-number" data-target="41">0</span>
+        <span class="stat-label">milhões de hectares em ILPF no Brasil</span>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-number" data-target="36" data-suffix="%">0</span>
+        <span class="stat-label">da matriz energética vem de fontes renováveis</span>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-number" data-target="70" data-suffix="M">0</span>
+        <span class="stat-label">de hectares sob plantio direto</span>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-number" data-target="10" data-suffix="bi">0</span>
+        <span class="stat-label">de pessoas alimentadas pela agro brasileira</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECNOLOGIA ============ -->
+<section class="tecnologia" id="tecnologia">
+  <div class="container">
+    <div class="tech-grid">
+      <div class="tech-content fade-in">
+        <span class="section-tag">Agro 4.0</span>
+        <h2>Tecnologia a serviço da sustentabilidade</h2>
+        <p>Sensor no solo, drone no ar e inteligência no bolso do produtor. O campo brasileiro é um dos mais conectados do mundo e usa tecnologia para produzir mais com menos.</p>
+        <div class="tech-list">
+          <div class="tech-item">
+            <div class="tech-item-icon">🛰️</div>
+            <div>
+              <h5>Agricultura de Precisão</h5>
+              <p>GPS, sensores e mapas de produtividade para aplicar insumos no lugar certo, na dose certa.</p>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-item-icon">🤖</div>
+            <div>
+              <h5>IA e Big Data</h5>
+              <p>Algoritmos analisam clima, solo e histórico para prever pragas, otimizar colheita e reduzir desperdícios.</p>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-item-icon">🚁</div>
+            <div>
+              <h5>Drones e VANTs</h5>
+              <p>Monitoramento aéreo de grandes áreas, aplicação localizada de defensivos e análise multiespectral.</p>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-item-icon">📱</div>
+            <div>
+              <h5>Conectividade Rural</h5>
+              <p>Internet no campo permite gestão em tempo real, acesso a mercados e assistência técnica remota.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tech-visual fade-in">
+        <div class="tech-orbit"></div>
+        <div class="tech-icon-big">🚜</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section" id="contato">
+  <div class="container">
+    <div class="cta-content fade-in">
+      <h2>Pronto para cultivar o futuro?</h2>
+      <p>Faça parte dessa transformação. Seja produtor, estudante, pesquisador ou consumidor: cada escolha conta para um agro mais justo e sustentável.</p>
+      <a href="mailto:contato@agroverde.com.br" class="btn-primary">
+        Fale conosco
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+          </span>
+          AgroVerde
+        </a>
+        <p>Conteúdos, soluções e inspiração para um agro que produz em equilíbrio com a natureza e as pessoas.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1c2.7 0 4.9 2.2 4.9 4.9s-2.2 4.9-4.9 4.9-4.9-2.2-4.9-4.9 2.2-4.9 4.9-4.9zm0 8.1c1.8 0 3.2-1.4 3.2-3.2s-1.4-3.2-3.2-3.2-3.2 1.4-3.2 3.2 1.4 3.2 3.2 3.2zm6.2-8.3c0 .6-.5 1.1-1.1 1.1-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1.6 0 1.1.5 1.1 1.1z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1.1-1.8-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6c-1 .3-1.8 1.1-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1.1 1.8 2.1 2.1 1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6c1-.3 1.8-1.1 2.1-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.5 2h-17C2.7 2 2 2.7 2 3.5v17c0 .8.7 1.5 1.5 1.5h17c.8 0 1.5-.7 1.5-1.5v-17c0-.8-.7-1.5-1.5-1.5zM7.1 19H3.6V9h3.5v10zM5.4 7.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM19 19h-3.5v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V19H8V9h3.4v1.4c.5-.9 1.6-1.7 3.3-1.7 3.5 0 4.2 2.3 4.2 5.3V19z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#pilares">Pilares</a></li>
+          <li><a href="#praticas">Práticas</a></li>
+          <li><a href="#tecnologia">Tecnologia</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="#">Cases de sucesso</a></li>
+          <li><a href="#">Cartilhas</a></li>
+          <li><a href="#">Webinars</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>📧 contato@agroverde.com.br</li>
+          <li>📞 (11) 4000-0000</li>
+          <li>📍 São Paulo, Brasil</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 AgroVerde — Cultivando o futuro com responsabilidade. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header com sombra ao rolar
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Menu mobile
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('active'));
+  });
+
+  // Animação fade-in ao scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Contadores animados
+  const counters = document.querySelectorAll('.stat-number');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const step = target / 60;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target + suffix;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current) + suffix;
+          }
+        }, 25);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+</script>
+
+</body>
+</html>
